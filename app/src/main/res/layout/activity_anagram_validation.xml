@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="AnagramValidationViewModel"
+            type="com.anagramvalidation.ui.validator.AnagramValidationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.validator.AnagramValidationActivity">
+
+        <EditText
+            android:id="@+id/edit_normal_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/bottom_margin"
+            android:background="@drawable/edittext_background"
+            android:ems="12"
+            android:hint="@string/normal_string"
+            android:padding="@dimen/edit_text_padding"
+            android:text="@={AnagramValidationViewModel.normalString}"
+            app:layout_constraintBottom_toTopOf="@+id/edit_aragram_string"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_aragram_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/bottom_margin"
+            android:background="@drawable/edittext_background"
+            android:ems="12"
+            android:hint="@string/anagram_string"
+            android:padding="@dimen/edit_text_padding"
+            android:text="@={AnagramValidationViewModel.anagramString}"
+            app:layout_constraintBottom_toTopOf="@+id/button_validate"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@drawable/button_selector"
+            android:text="@string/validate"
+            android:enabled="@{AnagramValidationViewModel.normalString.length() > 0 &amp;&amp; AnagramValidationViewModel.anagramString.length() > 0 }"
+            android:onClick="@{v -> AnagramValidationViewModel.onSubmit(v)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/edit_aragram_string"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
